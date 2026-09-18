@@ -17,6 +17,7 @@
     "db:setup": "node scripts/setup-db.js"
   },
   "dependencies": {
+    "@repo/core": "workspace:*",
     "dotenv": "^17.4.2",
     "drizzle-orm": "1.0.0-rc.4",
     "hono": "^4.13.8"
