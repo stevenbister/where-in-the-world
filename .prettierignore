@@ -1,0 +1,6 @@
+node_modules
+
+docs
+
+apps/api/src/db/migrations
+apps/api/worker-configuration.d.ts
