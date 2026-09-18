@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "wrangler dev",
     "deploy": "wrangler deploy --minify",
+    "preview": "wrangler versions upload",
     "lint": "eslint .",
     "test": "jest",
     "typecheck": "tsc --noEmit",
