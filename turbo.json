@@ -1,6 +1,12 @@
 {
   "$schema": "https://turborepo.dev/schema.json",
   "ui": "tui",
+  "globalEnv": [
+    "NODE_ENV",
+    "CLOUDFLARE_ACCOUNT_ID",
+    "CLOUDFLARE_DATABASE_ID",
+    "CLOUDFLARE_D1_TOKEN"
+  ],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
@@ -18,7 +24,8 @@
     },
     "dev": {
       "cache": false,
-      "persistent": true
+      "persistent": true,
+      "env": ["LOCAL_D1_DB"]
     }
   }
 }
