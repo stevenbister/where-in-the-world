@@ -14,10 +14,12 @@
     "db:migrate": "node scripts/run-drizzle.js migrate",
     "db:studio": "node scripts/run-drizzle.js studio",
     "db:migrate:ci": "drizzle-kit migrate",
-    "db:setup": "node scripts/setup-db.js"
+    "db:setup": "node scripts/setup-db.js",
+    "db:seed-admin": "node scripts/seed-admin.js"
   },
   "dependencies": {
     "@repo/core": "workspace:*",
+    "better-auth": "^1.7.5",
     "dotenv": "^17.4.2",
     "drizzle-orm": "1.0.0-rc.4",
     "hono": "^4.13.8"
