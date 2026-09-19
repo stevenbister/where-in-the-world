@@ -1,46 +1,46 @@
 {
-  "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "where-in-the-world-api",
-  "main": "src/index.ts",
-  "compatibility_date": "2026-08-21",
-  "compatibility_flags": ["nodejs_als"],
-  "workers_dev": true,
-  "preview_urls": true,
-  "d1_databases": [
-    {
-      "binding": "DB",
-      "database_name": "travel-log",
-      "database_id": "4e3948b3-d370-4842-9cdd-1ca9089972f7",
-      "migrations_dir": "src/db/migrations",
-    },
-  ],
-  // "d1_databases": [
-  //   {
-  //     "binding": "MY_DB",
-  //     "database_name": "my-database",
-  //     "database_id": ""
-  //   }
-  // ],
-  // "vars": {
-  //   "MY_VAR": "my-variable"
-  // },
-  // "kv_namespaces": [
-  //   {
-  //     "binding": "MY_KV_NAMESPACE",
-  //     "id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-  //   }
-  // ],
-  // "r2_buckets": [
-  //   {
-  //     "binding": "MY_BUCKET",
-  //     "bucket_name": "my-bucket"
-  //   }
-  // ],
-  // "ai": {
-  //   "binding": "AI"
-  // },
-  // "observability": {
-  //   "enabled": true,
-  //   "head_sampling_rate": 1
-  // }
+    "$schema": "node_modules/wrangler/config-schema.json",
+    "name": "where-in-the-world-api",
+    "main": "src/index.ts",
+    "compatibility_date": "2026-08-21",
+    "compatibility_flags": ["nodejs_als"],
+    "workers_dev": true,
+    "preview_urls": true,
+    "d1_databases": [
+        {
+            "binding": "DB",
+            "database_name": "where-in-the-world",
+            "database_id": "7fc19fec-d6e9-4ec2-a87b-d5c69d39e13c",
+            "migrations_dir": "src/db/migrations",
+        },
+    ],
+    // "d1_databases": [
+    //   {
+    //     "binding": "MY_DB",
+    //     "database_name": "my-database",
+    //     "database_id": ""
+    //   }
+    // ],
+    // "vars": {
+    //   "MY_VAR": "my-variable"
+    // },
+    // "kv_namespaces": [
+    //   {
+    //     "binding": "MY_KV_NAMESPACE",
+    //     "id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    //   }
+    // ],
+    // "r2_buckets": [
+    //   {
+    //     "binding": "MY_BUCKET",
+    //     "bucket_name": "my-bucket"
+    //   }
+    // ],
+    // "ai": {
+    //   "binding": "AI"
+    // },
+    // "observability": {
+    //   "enabled": true,
+    //   "head_sampling_rate": 1
+    // }
 }
