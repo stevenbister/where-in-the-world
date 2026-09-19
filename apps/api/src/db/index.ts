@@ -1,8 +1,10 @@
 import { drizzle } from 'drizzle-orm/d1';
+import { getContext } from 'hono/context-storage';
 
+import type { AppBindings } from '../types';
 import { relations } from './schema/relations';
 
-export const createDatabase = (client: D1Database) =>
-    drizzle(client, {
+export const database = () =>
+    drizzle(getContext<AppBindings>().env.DB, {
         relations,
     });

@@ -1,6 +1,7 @@
 import { OpenAPIHono } from '@hono/zod-openapi';
+import { contextStorage } from 'hono/context-storage';
+import { secureHeaders } from 'hono/secure-headers';
 
-import { dbConnect } from '../middleware/db';
 import type { AppBindings } from '../types';
 
 export const createRouter = () => {
@@ -10,7 +11,8 @@ export const createRouter = () => {
 export const createApp = () => {
     const app = createRouter();
 
-    app.use(dbConnect);
+    app.use(secureHeaders());
+    app.use(contextStorage());
 
     app.notFound((c) => c.json({ error: 'Not Found' }, 404));
 
