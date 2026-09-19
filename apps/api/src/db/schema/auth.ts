@@ -1,4 +1,4 @@
-import { defineRelations, sql } from 'drizzle-orm';
+import { sql } from 'drizzle-orm';
 import { index, integer, sqliteTable, text } from 'drizzle-orm/sqlite-core';
 
 export const user = sqliteTable('user', {
@@ -98,31 +98,3 @@ export const rateLimit = sqliteTable('rate_limit', {
     count: integer('count').notNull(),
     lastRequest: integer('last_request').notNull(),
 });
-
-export const schemaRelations = defineRelations(
-    { user, session, account, verification, rateLimit },
-    (r) => ({
-        user: {
-            sessions: r.many.session({
-                from: r.user.id,
-                to: r.session.userId,
-            }),
-            accounts: r.many.account({
-                from: r.user.id,
-                to: r.account.userId,
-            }),
-        },
-        session: {
-            user: r.one.user({
-                from: r.session.userId,
-                to: r.user.id,
-            }),
-        },
-        account: {
-            user: r.one.user({
-                from: r.account.userId,
-                to: r.user.id,
-            }),
-        },
-    })
-);
