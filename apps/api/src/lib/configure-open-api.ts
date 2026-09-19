@@ -13,5 +13,5 @@ export const configureOpenAPI = (app: OpenAPIHono<AppBindings>) => {
         },
     });
 
-    app.get('/docs', Scalar({ url: '/openapi.json' }));
+    app.get('/docs', Scalar({ url: '/api/v1/openapi.json' }));
 };
