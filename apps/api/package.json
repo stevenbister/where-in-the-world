@@ -18,11 +18,15 @@
     "db:seed-admin": "node scripts/seed-admin.js"
   },
   "dependencies": {
+    "@hono/zod-openapi": "^1.6.3",
     "@repo/core": "workspace:*",
+    "@scalar/hono-api-reference": "^0.12.2",
     "better-auth": "^1.7.5",
     "dotenv": "^17.4.2",
     "drizzle-orm": "1.0.0-rc.4",
-    "hono": "^4.13.8"
+    "drizzle-zod": "^0.8.3",
+    "hono": "^4.13.8",
+    "zod": "^4.6.5"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",

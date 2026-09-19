@@ -1,9 +1,11 @@
-import { Hono } from "hono";
+import { configureOpenAPI } from './lib/configure-open-api';
+import { createApp } from './lib/create-app';
+import { healthCheckRoutes } from './routes/health/health.index';
 
-const app = new Hono<{ Bindings: CloudflareBindings }>();
+const app = createApp().basePath('/api/v1');
 
-app.get("/", async (c) => {
-  return c.text("Hello Hono!");
-});
+app.route('/', healthCheckRoutes);
+
+configureOpenAPI(app);
 
 export default app;
