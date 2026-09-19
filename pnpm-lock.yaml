@@ -91,6 +91,9 @@ importers:
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
+      '@types/jest':
+        specifier: ^30.0.0
+        version: 30.0.0
       '@types/node':
         specifier: ^26.6.1
         version: 26.6.1
@@ -103,6 +106,9 @@ importers:
       jest:
         specifier: 30.5.1
         version: 30.5.1(@types/node@26.6.1)(supports-color@10.2.2)
+      ts-jest:
+        specifier: 29.4.12
+        version: 29.4.12(@babel/core@7.29.7(supports-color@10.2.2))(@jest/transform@30.5.1(supports-color@10.2.2))(@jest/types@30.5.1)(babel-jest@30.5.1(@babel/core@7.29.7(supports-color@10.2.2))(supports-color@10.2.2))(esbuild@0.28.1)(jest-util@30.5.1)(jest@30.5.1(supports-color@10.2.2))(typescript@6.0.2)
 
   packages/eslint-config:
     devDependencies:
