@@ -2,39 +2,53 @@ import type { DB } from 'better-auth/adapters/drizzle';
 
 import { auth, defaultOptions } from './server';
 
-jest.mock('better-auth', () => ({
-    betterAuth: jest.fn(),
+const mockBetterAuth = vi.hoisted(() => vi.fn());
+const mockDrizzleAdapter = vi.hoisted(() => vi.fn());
+
+vi.mock('better-auth', () => ({
+    betterAuth: mockBetterAuth,
 }));
 
-const mockDrizzleAdapter = jest.fn();
-jest.mock('better-auth/adapters/drizzle', () => ({
-    drizzleAdapter: () => mockDrizzleAdapter,
+vi.mock('better-auth/adapters/drizzle', () => ({
+    drizzleAdapter: mockDrizzleAdapter,
 }));
 
-jest.mock('better-auth/plugins/admin', () => ({
+vi.mock('better-auth/plugins/admin', () => ({
     admin: () => ({ id: 'admin' }),
 }));
 
 const mockDB: DB = {
-    prepare: jest.fn(),
-    dump: jest.fn(),
-    batch: jest.fn(),
-    exec: jest.fn(),
+    prepare: vi.fn(),
+    dump: vi.fn(),
+    batch: vi.fn(),
+    exec: vi.fn(),
 };
 
 const mockOptions = {
     baseURL: 'https://example.com',
-    hashFn: jest.fn(),
-    verifyFn: jest.fn(),
+    hashFn: vi.fn(),
+    verifyFn: vi.fn(),
     trustedOrigins: ['http://localhost:5173'],
     secret: 'secret',
 };
 
+const adapterResult = { type: 'drizzle-adapter' };
+
 describe('auth', () => {
+    beforeEach(() => {
+        vi.clearAllMocks();
+        mockDrizzleAdapter.mockReturnValue(adapterResult);
+    });
+
     it('calls betterAuth with correct options', async () => {
         auth(mockDB, mockOptions);
-        expect(require('better-auth').betterAuth).toHaveBeenCalledWith({
-            database: mockDrizzleAdapter,
+
+        expect(mockDrizzleAdapter).toHaveBeenCalledWith(
+            mockDB,
+            expect.anything()
+        );
+        expect(mockBetterAuth).toHaveBeenCalledWith({
+            database: adapterResult,
             plugins: [{ id: 'admin' }],
             ...defaultOptions,
             ...mockOptions,

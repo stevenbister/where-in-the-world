@@ -1,22 +1,24 @@
 {
-  "name": "where-in-the-world",
-  "private": true,
-  "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev",
-    "lint": "turbo run lint",
-    "test": "turbo run test",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "typecheck": "turbo run typecheck"
-  },
-  "devDependencies": {
-    "@trivago/prettier-plugin-sort-imports": "^6.0.2",
-    "prettier": "3.9.6",
-    "turbo": "^2.10.13",
-    "typescript": "6.0.2"
-  },
-  "packageManager": "pnpm@11.25.0",
-  "engines": {
-    "node": ">=24"
-  }
+    "name": "where-in-the-world",
+    "private": true,
+    "scripts": {
+        "build": "turbo run build",
+        "dev": "turbo run dev",
+        "lint": "turbo run lint",
+        "test": "turbo run test",
+        "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+        "typecheck": "turbo run typecheck"
+    },
+    "devDependencies": {
+        "@repo/vitest-config": "workspace:*",
+        "@trivago/prettier-plugin-sort-imports": "^6.0.2",
+        "prettier": "3.9.6",
+        "turbo": "^2.10.13",
+        "typescript": "6.0.2",
+        "vitest": "^5.0.1"
+    },
+    "packageManager": "pnpm@11.25.0",
+    "engines": {
+        "node": ">=24"
+    }
 }
