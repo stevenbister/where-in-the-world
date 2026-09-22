@@ -16,6 +16,7 @@ vi.mock('better-auth/adapters/drizzle', () => ({
 vi.mock('better-auth/plugins', async (importOriginal) => ({
     ...(await importOriginal),
     openAPI: () => ({ id: 'open-api' }),
+    bearer: () => ({ id: 'bearer' }),
 }));
 
 vi.mock('better-auth/plugins/admin', () => ({
@@ -54,7 +55,7 @@ describe('auth', () => {
         );
         expect(mockBetterAuth).toHaveBeenCalledWith({
             database: adapterResult,
-            plugins: [{ id: 'admin' }, { id: 'open-api' }],
+            plugins: [{ id: 'admin' }, { id: 'open-api' }, { id: 'bearer' }],
             ...defaultOptions,
             ...mockOptions,
         });

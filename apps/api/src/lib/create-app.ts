@@ -6,6 +6,7 @@ import { requestId } from 'hono/request-id';
 import { secureHeaders } from 'hono/secure-headers';
 import { trimTrailingSlash } from 'hono/trailing-slash';
 
+import { session } from '../middleware/session';
 import type { AppBindings } from '../types';
 import { configureBetterAuth } from './configure-better-auth';
 
@@ -22,6 +23,7 @@ export const createApp = () => {
     app.use(csrf());
     app.use(requestId());
     app.use(trimTrailingSlash());
+    app.use(session);
 
     /**
      * app.all() forwards every HTTP method to Better Auth using the raw Web Standard Request from c.req.raw.
