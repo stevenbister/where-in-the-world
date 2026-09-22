@@ -13,5 +13,18 @@ export const configureOpenAPI = (app: OpenAPIHono<AppBindings>) => {
         },
     });
 
-    app.get('/docs', Scalar({ url: '/api/v1/openapi.json' }));
+    app.get(
+        '/docs',
+        Scalar(async () => {
+            return {
+                sources: [
+                    { url: '/api/v1/openapi.json', title: 'API v1' },
+                    {
+                        url: '/api/v1/auth/open-api/generate-schema',
+                        title: 'Auth',
+                    },
+                ],
+            };
+        })
+    );
 };

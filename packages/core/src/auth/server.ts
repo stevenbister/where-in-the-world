@@ -5,11 +5,18 @@ import {
 } from 'better-auth';
 import type { DB } from 'better-auth/adapters/drizzle';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
+import { bearer, openAPI } from 'better-auth/plugins';
 import { admin } from 'better-auth/plugins/admin';
 
 type Options = Omit<BetterAuthOptions, 'plugins'>;
 
-export const plugins: BetterAuthPlugin[] = [admin()];
+export const plugins: BetterAuthPlugin[] = [
+    admin(),
+    openAPI({
+        disableDefaultReference: true,
+    }),
+    bearer(),
+];
 
 export const defaultOptions: Options = {
     session: {
@@ -32,12 +39,19 @@ export const defaultOptions: Options = {
     },
 };
 
-export const auth = (db: DB, options?: Options) => {
+export const auth = (
+    db: DB,
+    schema: Record<string, unknown>,
+    options: Options
+) => {
     if (!db) throw new Error('DB is required');
+    if (!options.baseURL) throw new Error('Base URL is required');
+    if (!options.secret) throw new Error('Secret is required');
 
     return betterAuth({
         database: drizzleAdapter(db, {
             provider: 'sqlite',
+            schema,
         }),
         ...defaultOptions,
         ...options,

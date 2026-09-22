@@ -1,31 +1,33 @@
 {
-  "$schema": "https://turborepo.dev/schema.json",
-  "ui": "tui",
-  "globalEnv": [
-    "NODE_ENV",
-    "CLOUDFLARE_ACCOUNT_ID",
-    "CLOUDFLARE_DATABASE_ID",
-    "CLOUDFLARE_D1_TOKEN"
-  ],
-  "tasks": {
-    "build": {
-      "dependsOn": ["^build"],
-      "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "outputs": [".next/**", "!.next/cache/**", "!.next/dev/**"]
-    },
-    "lint": {
-      "dependsOn": ["^lint"]
-    },
-    "typecheck": {
-      "dependsOn": ["^typecheck"]
-    },
-    "test": {
-      "dependsOn": ["^test"]
-    },
-    "dev": {
-      "cache": false,
-      "persistent": true,
-      "env": ["LOCAL_D1_DB"]
+    "$schema": "https://turborepo.dev/schema.json",
+    "ui": "tui",
+    "globalEnv": [
+        "NODE_ENV",
+        "CLOUDFLARE_ACCOUNT_ID",
+        "CLOUDFLARE_DATABASE_ID",
+        "CLOUDFLARE_D1_TOKEN",
+        "BETTER_AUTH_URL",
+        "BETTER_AUTH_SECRET"
+    ],
+    "tasks": {
+        "build": {
+            "dependsOn": ["^build"],
+            "inputs": ["$TURBO_DEFAULT$", ".env*"],
+            "outputs": [".next/**", "!.next/cache/**", "!.next/dev/**"]
+        },
+        "lint": {
+            "dependsOn": ["^lint"]
+        },
+        "typecheck": {
+            "dependsOn": ["^typecheck"]
+        },
+        "test": {
+            "dependsOn": ["^test"]
+        },
+        "dev": {
+            "cache": false,
+            "persistent": true,
+            "env": ["LOCAL_D1_DB"]
+        }
     }
-  }
 }
