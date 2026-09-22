@@ -1,7 +1,13 @@
 import { MOCK_ENV } from '../../__fixtures__/mock-env';
 import app from '../../index';
 
+vi.mock('../../lib/configure-better-auth');
+
 describe('Health', () => {
+    beforeEach(() => {
+        vi.resetAllMocks();
+    });
+
     it('returns ok', async () => {
         const response = await app.request('/api/v1/health', {}, MOCK_ENV);
         expect(response.status).toBe(200);

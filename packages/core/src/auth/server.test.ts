@@ -13,6 +13,11 @@ vi.mock('better-auth/adapters/drizzle', () => ({
     drizzleAdapter: mockDrizzleAdapter,
 }));
 
+vi.mock('better-auth/plugins', async (importOriginal) => ({
+    ...(await importOriginal),
+    openAPI: () => ({ id: 'open-api' }),
+}));
+
 vi.mock('better-auth/plugins/admin', () => ({
     admin: () => ({ id: 'admin' }),
 }));
@@ -41,7 +46,7 @@ describe('auth', () => {
     });
 
     it('calls betterAuth with correct options', async () => {
-        auth(mockDB, mockOptions);
+        auth(mockDB, {}, mockOptions);
 
         expect(mockDrizzleAdapter).toHaveBeenCalledWith(
             mockDB,
@@ -49,7 +54,7 @@ describe('auth', () => {
         );
         expect(mockBetterAuth).toHaveBeenCalledWith({
             database: adapterResult,
-            plugins: [{ id: 'admin' }],
+            plugins: [{ id: 'admin' }, { id: 'open-api' }],
             ...defaultOptions,
             ...mockOptions,
         });
@@ -58,5 +63,17 @@ describe('auth', () => {
     it('throws error if DB is not provided', async () => {
         // @ts-expect-error - DB is required but explicitly not provided
         expect(() => auth(undefined)).toThrow('DB is required');
+    });
+
+    it('throws error if baseURL is not provided', async () => {
+        expect(() =>
+            auth(mockDB, {}, { ...mockOptions, baseURL: undefined })
+        ).toThrow('Base URL is required');
+    });
+
+    it('throws error if secret is not provided', async () => {
+        expect(() =>
+            auth(mockDB, {}, { ...mockOptions, secret: undefined })
+        ).toThrow('Secret is required');
     });
 });

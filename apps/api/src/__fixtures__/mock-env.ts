@@ -8,4 +8,6 @@ export const MOCK_ENV: Partial<AppBindings['Bindings']> = {
         withSession: vi.fn(),
         dump: vi.fn(),
     },
+    BETTER_AUTH_SECRET: 'super-secret-string',
+    BETTER_AUTH_URL: 'http://127.0.0.1:8787',
 };
