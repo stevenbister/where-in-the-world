@@ -44,5 +44,5 @@ jobs:
       - name: Test
         run: pnpm test --affected
         env:
-          BETTER_AUTH_URL: ${{ vars. BETTER_AUTH_URL }}
+          BETTER_AUTH_URL: ${{ vars.BETTER_AUTH_URL }}
           BETTER_AUTH_SECRET: ${{ secrets.BETTER_AUTH_SECRET }}
