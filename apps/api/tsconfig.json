@@ -1,12 +1,11 @@
 {
-  "$schema": "https://json.schemastore.org/tsconfig",
-  "extends": "@repo/typescript-config/base.json",
-  "compilerOptions": {
-    "target": "ESNext",
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
-    "lib": [
-      "ESNext"
-    ],
-  },
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "extends": "@repo/typescript-config/base.json",
+    "compilerOptions": {
+        "target": "ESNext",
+        "module": "ESNext",
+        "moduleResolution": "Bundler",
+        "lib": ["ESNext"],
+        "types": ["vitest/globals", "node", "@cloudflare/vitest-plugin/types"]
+    }
 }

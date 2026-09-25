@@ -16,7 +16,16 @@ export type AppBindings = {
     };
 };
 
+export type AuthedAppBindings = AppBindings & {
+    Variables: { session: Session };
+};
+
 export type AppRouteHandler<R extends RouteConfig> = RouteHandler<
     R,
     AppBindings
+>;
+
+export type AuthedAppRouteHandler<R extends RouteConfig> = RouteHandler<
+    R,
+    AuthedAppBindings
 >;

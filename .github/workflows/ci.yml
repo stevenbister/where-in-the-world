@@ -14,6 +14,8 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
 
       - name: Cache turbo build setup
         uses: actions/cache@v4
@@ -40,6 +42,16 @@ jobs:
 
       - name: TypeCheck
         run: pnpm typecheck --affected
+
+      - name: Create API .env for tests
+        run: |
+          {
+            echo "BETTER_AUTH_URL=${BETTER_AUTH_URL:-http://localhost:8787}"
+            echo "BETTER_AUTH_SECRET=${BETTER_AUTH_SECRET:-test-secret-at-least-32-chars-long-1234}"
+          } > apps/api/.env
+        env:
+          BETTER_AUTH_URL: ${{ vars.BETTER_AUTH_URL }}
+          BETTER_AUTH_SECRET: ${{ secrets.BETTER_AUTH_SECRET }}
 
       - name: Test
         run: pnpm test --affected

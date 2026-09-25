@@ -1,4 +1,4 @@
-import { OpenAPIHono } from '@hono/zod-openapi';
+import { type Hook, OpenAPIHono, z } from '@hono/zod-openapi';
 import { contextStorage } from 'hono/context-storage';
 import { cors } from 'hono/cors';
 import { csrf } from 'hono/csrf';
@@ -10,8 +10,23 @@ import { session } from '../middleware/session';
 import type { AppBindings } from '../types';
 import { configureBetterAuth } from './configure-better-auth';
 
-export const createRouter = () => {
-    return new OpenAPIHono<AppBindings>();
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const defaultHook: Hook<any, any, any, any> = async (result, c) => {
+    if (!result.success) {
+        return c.json(
+            {
+                error: z.prettifyError(result.error),
+                source: 'custom_error_handler',
+            },
+            422
+        );
+    }
+};
+
+export const createRouter = <Bindings extends AppBindings>() => {
+    return new OpenAPIHono<Bindings>({
+        defaultHook,
+    });
 };
 
 export const createApp = () => {
