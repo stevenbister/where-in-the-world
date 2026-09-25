@@ -4,6 +4,12 @@ import {
     snakeCase,
     text,
 } from 'drizzle-orm/sqlite-core';
+import {
+    createInsertSchema,
+    createSelectSchema,
+    createUpdateSchema,
+} from 'drizzle-zod';
+import { z } from 'zod';
 
 import { media } from './media';
 
@@ -23,4 +29,18 @@ export const trips = snakeCase.table('trips', {
     updatedAt: int({ mode: 'timestamp' })
         .$defaultFn(() => new Date())
         .$onUpdate(() => new Date()),
+});
+
+export const selectTripSchema = createSelectSchema(trips);
+export const insertTripSchema = createInsertSchema(trips, {
+    startDate: z.coerce.date().nullish(),
+    endDate: z.coerce.date().nullish(),
+    createdAt: z.coerce.date().nullish(),
+    updatedAt: z.coerce.date().nullish(),
+});
+export const updateTripSchema = createUpdateSchema(trips, {
+    startDate: z.coerce.date().nullish(),
+    endDate: z.coerce.date().nullish(),
+    createdAt: z.coerce.date().nullish(),
+    updatedAt: z.coerce.date().nullish(),
 });
