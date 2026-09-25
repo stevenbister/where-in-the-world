@@ -4,7 +4,7 @@ import { healthCheckRoutes } from './routes/health/health.index';
 
 const app = createApp();
 
-app.route('/', healthCheckRoutes);
+app.openapiRoutes([...healthCheckRoutes] as const);
 
 configureOpenAPI(app);
 
