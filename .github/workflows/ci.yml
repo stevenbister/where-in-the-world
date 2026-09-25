@@ -43,14 +43,6 @@ jobs:
       - name: TypeCheck
         run: pnpm typecheck --affected
 
-      - name: Dump vars context
-        env:
-          BETTER_AUTH_URL: ${{ vars.BETTER_AUTH_URL }}
-          BETTER_AUTH_SECRET: ${{ secrets.BETTER_AUTH_SECRET }}
-        run: |
-          echo "BETTER_AUTH_URL=${BETTER_AUTH_URL}"
-          echo "BETTER_AUTH_SECRET=${BETTER_AUTH_SECRET}"
-
       - name: Create API .env for tests
         run: |
           {
