@@ -5,6 +5,7 @@ import * as schema from '../db/schema';
 
 export const configureBetterAuth = () => {
     const db = database();
+    console.log('BETTER_AUTH_URL:', process.env.BETTER_AUTH_URL);
     return auth(db, schema, {
         basePath: '/api/v1/auth',
         baseURL: process.env.BETTER_AUTH_URL,
