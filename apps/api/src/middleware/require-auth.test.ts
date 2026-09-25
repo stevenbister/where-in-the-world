@@ -1,6 +1,6 @@
+import { env } from 'cloudflare:workers';
 import type { Context } from 'hono';
 
-import { MOCK_ENV } from '../__fixtures__/mock-env';
 import { MOCK_SESSION } from '../__fixtures__/session';
 import type { AppBindings, Session } from '../types';
 import { requireAuth } from './require-auth';
@@ -19,7 +19,7 @@ const mockContext = {
     },
     get: vi.fn(),
     set: vi.fn(),
-    env: MOCK_ENV,
+    env,
     json: vi.fn(),
 } as unknown as Context<AppBindings, string, object>;
 

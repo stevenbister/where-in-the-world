@@ -1,4 +1,5 @@
-import { MOCK_ENV } from '../__fixtures__/mock-env';
+import { env } from 'cloudflare:workers';
+
 import { configureBetterAuth } from './configure-better-auth';
 import { createApp } from './create-app';
 
@@ -18,7 +19,7 @@ describe('createApp', () => {
 
     it('creates returns a 404 status code when a route is not found', async () => {
         const app = createApp();
-        const response = await app.request('/non-existent-route', {}, MOCK_ENV);
+        const response = await app.request('/non-existent-route', {}, env);
         expect(response.status).toBe(404);
         expect(await response.json()).toEqual({ error: 'Not Found' });
     });
@@ -34,7 +35,7 @@ describe('createApp', () => {
 
         const app = createApp();
 
-        const response = await app.request('/api/v1/auth/ok', {}, MOCK_ENV);
+        const response = await app.request('/api/v1/auth/ok', {}, env);
         expect(response.status).toBe(200);
     });
 });

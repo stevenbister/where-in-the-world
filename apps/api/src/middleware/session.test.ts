@@ -1,6 +1,6 @@
+import { env } from 'cloudflare:workers';
 import type { Context } from 'hono';
 
-import { MOCK_ENV } from '../__fixtures__/mock-env';
 import { MOCK_SESSION } from '../__fixtures__/session';
 import { configureBetterAuth } from '../lib/configure-better-auth';
 import type { AppBindings, Session } from '../types';
@@ -20,7 +20,7 @@ const mockContext = {
     },
     get: vi.fn(),
     set: vi.fn(),
-    env: MOCK_ENV,
+    env,
 } as unknown as Context<AppBindings, string, object>;
 
 const mockNext = vi.fn();
