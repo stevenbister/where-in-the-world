@@ -12,6 +12,7 @@
     "devDependencies": {
         "@repo/vitest-config": "workspace:*",
         "@trivago/prettier-plugin-sort-imports": "^6.0.2",
+        "playwright": "^1.63.0",
         "prettier": "3.9.6",
         "turbo": "^2.10.13",
         "typescript": "6.0.2",
