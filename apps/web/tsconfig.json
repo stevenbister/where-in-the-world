@@ -3,6 +3,9 @@
     "extends": "@repo/typescript-config/react-library.json",
     "files": [],
     "include": ["src"],
+    "compilerOptions": {
+        "types": ["vitest/globals", "./css.d.ts"]
+    },
     "references": [
         {
             "path": "./tsconfig.worker.json"
