@@ -1,7 +1,11 @@
 {
-  "$schema": "https://json.schemastore.org/tsconfig",
-  "extends": "./base.json",
-  "compilerOptions": {
-    "jsx": "react-jsx"
-  }
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "extends": "./base.json",
+    "compilerOptions": {
+        "noEmit": true,
+        "allowImportingTsExtensions": true,
+        "allowArbitraryExtensions": true,
+        "types": ["vite/client"],
+        "jsx": "react-jsx"
+    }
 }

@@ -15,6 +15,10 @@
         "skipLibCheck": true,
         "strict": true,
         "target": "ES2022",
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "erasableSyntaxOnly": true,
+        "noFallthroughCasesInSwitch": true,
         "types": ["vitest/globals", "node"]
     }
 }

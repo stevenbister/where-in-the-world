@@ -1,0 +1,11 @@
+{
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "extends": "@repo/typescript-config/react-library.json",
+    "files": [],
+    "include": ["src"],
+    "references": [
+        {
+            "path": "./tsconfig.worker.json"
+        }
+    ]
+}
