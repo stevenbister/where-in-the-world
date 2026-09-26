@@ -6,7 +6,6 @@
     "compatibility_flags": ["nodejs_als"],
     "workers_dev": true,
     "preview_urls": true,
-    "previews": {},
     "d1_databases": [
         {
             "binding": "DB",

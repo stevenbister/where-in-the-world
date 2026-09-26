@@ -16,6 +16,7 @@
     "upload_source_maps": true,
     "workers_dev": true,
     "preview_urls": true,
+    "previews": {},
     /**
      * Smart Placement
      * https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
